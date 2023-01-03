@@ -16,17 +16,14 @@ Then run this code with `node 2.todo`
  */
 
 const {sum, subtract} = require('./math')
+const {test, expect} = require('./test-framework');
 
-let result, expected
+test('sum adds numbers', () => {
+  expect(sum(3, 7)).toBe(10);
+});
 
-result = sum(3, 7)
-expected = 10
-if (result !== expected) {
-  throw new Error(`${result} is not equal to ${expected}`)
-}
+test('subtract subtracts numbers', () => {
+  expect(subtract(7, 3)).toBe(4);
+});
 
-result = subtract(7, 3)
-expected = 4
-if (result !== expected) {
-  throw new Error(`${result} is not equal to ${expected}`)
-}
+

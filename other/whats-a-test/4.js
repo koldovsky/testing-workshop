@@ -2,6 +2,7 @@
 // and run this file with jest!
 // Run `./jest`
 const {sum, subtract} = require('./math')
+// const {test, expect} = require('./test-framework');
 
 test('sum adds numbers', () => {
   const result = sum(3, 7)

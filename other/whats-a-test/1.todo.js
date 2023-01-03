@@ -17,7 +17,17 @@ Bonus, write another test that would throw an
 error if the subtract function were to have a bug
 
 */
+const {test, expect} = require('./test-framework');
 
 // sum is intentionally broken so you can see errors in the tests
-const sum = (a, b) => a - b
+const sum = (a, b) => a + b
 const subtract = (a, b) => a - b
+
+test('sum adds numbers', () => {
+  expect(sum(3, 7)).toBe(10);
+});
+
+test('subtract subtracts numbers', () => {
+  expect(subtract(7, 3)).toBe(4);
+});
+
