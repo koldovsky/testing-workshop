@@ -1,6 +1,28 @@
-test('isPasswordAllowed only allows some passwords', () => {
-  // here's where I'll demo things for you :)
-})
+import { isPasswordAllowed, userToJSON } from '../auth';
+
+describe('isPasswordAllowed', () => {
+
+  test("password with length less than 6 should return false", () => {
+    expect(isPasswordAllowed("abc12")).toBe(false);
+  });
+
+  test("password with only digits should return false", () => {
+    expect(isPasswordAllowed("123456")).toBe(false);
+  });
+
+  test("password with only letters should return false", () => {
+    expect(isPasswordAllowed("abcdef")).toBe(false);
+  });
+
+  test("password with length greater than 6 and with both digits and letters should return true", () => {
+    expect(isPasswordAllowed("abc123!")).toBe(true);
+  });
+
+  test("password with length greater than 6 and with special characters should return true", () => {
+    expect(isPasswordAllowed("abc!@#123")).toBe(true);
+  });
+
+});
 
 test('userToJSON excludes secure properties', () => {
   // Here you'll need to create a test user object
@@ -9,19 +31,25 @@ test('userToJSON excludes secure properties', () => {
   // doesn't have any of the properties it's not
   // supposed to.
   // Here's an example of a user object:
-  // const user = {
-  //   id: 'some-id',
-  //   username: 'sarah',
-  //   // ↑ above are properties which should
-  //   // be present in the returned object
-  //
-  //   // ↓ below are properties which shouldn't
-  //   // be present in the returned object
-  //   exp: new Date(),
-  //   iat: new Date(),
-  //   hash: 'some really long string',
-  //   salt: 'some shorter string',
-  // }
+  const user = {
+    id: 'some-id',
+    username: 'sarah',
+    // ↑ above are properties which should
+    // be present in the returned object
+
+    // ↓ below are properties which shouldn't
+    // be present in the returned object
+    exp: new Date(),
+    iat: new Date(),
+    hash: 'some really long string',
+    salt: 'some shorter string',
+  }
+  const actual = userToJSON(user);
+  const expected = {
+    id: 'some-id',
+    username: 'sarah',
+  }
+  expect(actual).toEqual(expected);
 })
 
 //////// Elaboration & Feedback /////////
