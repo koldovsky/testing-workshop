@@ -24,6 +24,7 @@ describe('isPasswordAllowed', () => {
 
 });
 
+
 test('userToJSON excludes secure properties', () => {
   // Here you'll need to create a test user object
   // pass that to the userToJSON function
